@@ -22,7 +22,13 @@ import System.IO.Unsafe
 
 matrixRotation matrix r = do
     -- Write your code here
-    print matrix
+    let m = Data.List.length matrix
+    let n = Data.List.length (Data.List.head matrix)
+    let min = Prelude.min m n
+    let max = Prelude.max m n
+    let layers = min `div` 2
+    let matrix' = listArray ((0,0),(m-1,n-1)) (Data.List.concat matrix)
+    print matrix'
 
 lstrip = Data.Text.unpack . Data.Text.stripStart . Data.Text.pack
 rstrip = Data.Text.unpack . Data.Text.stripEnd . Data.Text.pack
