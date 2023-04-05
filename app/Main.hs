@@ -107,20 +107,20 @@ readMultipleLinesAsStringArray n = do
 
 main :: IO()
 main = do
-    --firstMultipleInputTemp <- getLine
-    --let firstMultipleInput = Data.List.words $ rstrip firstMultipleInputTemp
+    firstMultipleInputTemp <- getLine
+    let firstMultipleInput = Data.List.words $ rstrip firstMultipleInputTemp
 
-    --let m = read (firstMultipleInput !! 0) :: Int
-    ---- print with text
-    --print ("m: " ++ show m)
-    --let n = read (firstMultipleInput !! 1) :: Int
-    --print ("n: " ++ show n)
-    --let r = read (firstMultipleInput !! 2) :: Int
-    --print ("r: " ++ show r)
-    --matrixTemp <- readMultipleLinesAsStringArray m
-    let r = 2 :: Int
+    let m = read (firstMultipleInput !! 0) :: Int
+    -- print with text
+    print ("m: " ++ show m)
+    let n = read (firstMultipleInput !! 1) :: Int
+    print ("n: " ++ show n)
+    let r = read (firstMultipleInput !! 2) :: Int
+    print ("r: " ++ show r)
+    matrixTemp <- readMultipleLinesAsStringArray m
+    --let r = 2 :: Int
     --let matrixTemp = ["1 2 3 4", "5 6 7 8", "9 10 11 12", "13 14 15 16"]
-    let matrixTemp = ["1 2 3 4 5 6", "7 8 9 10 11 12", "13 14 15 16 17 18", "19 20 21 22 23 24", "25 26 27 28 29 30", "31 32 33 34 35 36"]
+    --let matrixTemp = ["1 2 3 4 5 6", "7 8 9 10 11 12", "13 14 15 16 17 18", "19 20 21 22 23 24", "25 26 27 28 29 30", "31 32 33 34 35 36"]
     let matrix = Data.List.map (\x -> Data.List.map (read :: String -> Int) . Data.List.words $ rstrip x) matrixTemp
 
     matrixRotation matrix r
