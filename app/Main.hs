@@ -81,10 +81,10 @@ listRotate listarray r = do
   res
 printListWitoutBrackets :: [Int] -> IO()
 printListWitoutBrackets aList =  putStrLn $ (Data.List.unwords . Data.List.map show) aList
-printMatrix :: Int -> Array (Int, Int) Int -> IO()
-printMatrix n matrix  = do
+printMatrix :: Int -> Int -> Array (Int, Int) Int -> IO()
+printMatrix m n matrix  = do
   -- matrix row by row list
-  let listMatrix = Data.List.map (\x -> Data.List.map (matrix!) x) (Data.List.map (\x -> Data.List.map (\y -> (x,y)) [0..n-1]) [0..n-1])
+  let listMatrix = Data.List.map (\x -> Data.List.map (matrix!) x) (Data.List.map (\x -> Data.List.map (\y -> (x,y)) [0..n-1]) [0..m-1])
   mapM_ printListWitoutBrackets listMatrix
 
 matrixRotation matrix r = do
@@ -93,7 +93,7 @@ matrixRotation matrix r = do
     let n = Data.List.length (Data.List.head matrix)
     let matrix' = listArray ((0,0),(m-1,n-1)) (Data.List.concat matrix)
     let listMatrix' = listRotate matrix' r
-    printMatrix n listMatrix'
+    printMatrix m n listMatrix'
 
 lstrip = Data.Text.unpack . Data.Text.stripStart . Data.Text.pack
 rstrip = Data.Text.unpack . Data.Text.stripEnd . Data.Text.pack
