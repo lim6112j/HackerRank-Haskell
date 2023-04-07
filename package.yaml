@@ -41,7 +41,7 @@ library:
   source-dirs: src
 
 executables:
-  HackerRank-exe:
+  rotatematrix:
     main: Main.hs
     source-dirs: app
     ghc-options:

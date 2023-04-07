@@ -25,32 +25,34 @@ import System.IO.Unsafe
 
 climbingLeaderboard ranked player = do
     -- Write your code here
+    undefined
 
 lstrip = Data.Text.unpack . Data.Text.stripStart . Data.Text.pack
 rstrip = Data.Text.unpack . Data.Text.stripEnd . Data.Text.pack
 
 main :: IO()
 main = do
-    stdout <- getEnv "OUTPUT_PATH"
-    fptr <- openFile stdout WriteMode
+    print "Hello World"
+    --stdout <- getEnv "OUTPUT_PATH"
+    --fptr <- openFile stdout WriteMode
 
-    rankedCountTemp <- getLine
-    let rankedCount = read $ lstrip $ rstrip rankedCountTemp :: Int
+    --rankedCountTemp <- getLine
+    --let rankedCount = read $ lstrip $ rstrip rankedCountTemp :: Int
 
-    rankedTemp <- getLine
+    --rankedTemp <- getLine
 
-    let ranked = Data.List.map (read :: String -> Int) . Data.List.words $ rstrip rankedTemp
+    --let ranked = Data.List.map (read :: String -> Int) . Data.List.words $ rstrip rankedTemp
 
-    playerCountTemp <- getLine
-    let playerCount = read $ lstrip $ rstrip playerCountTemp :: Int
+    --playerCountTemp <- getLine
+    --let playerCount = read $ lstrip $ rstrip playerCountTemp :: Int
 
-    playerTemp <- getLine
+    --playerTemp <- getLine
 
-    let player = Data.List.map (read :: String -> Int) . Data.List.words $ rstrip playerTemp
+    --let player = Data.List.map (read :: String -> Int) . Data.List.words $ rstrip playerTemp
 
-    let result = climbingLeaderboard ranked player
+    --let result = climbingLeaderboard ranked player
 
-    hPutStrLn fptr $ Data.List.intercalate "\n" $ Data.List.map (\x -> show x) $ result
+    --hPutStrLn fptr $ Data.List.intercalate "\n" $ Data.List.map (\x -> show x) $ result
 
-    hFlush fptr
-    hClose fptr
+    --hFlush fptr
+    --hClose fptr
