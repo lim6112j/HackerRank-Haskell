@@ -1,6 +1,6 @@
 {-# LANGUAGE DuplicateRecordFields, FlexibleInstances, UndecidableInstances #-}
 
-module Main where
+module Main(main) where
 
 import Control.Monad
 import Data.Array
@@ -23,25 +23,16 @@ import qualified Data.Maybe
 -- The function accepts following parameters:
 --  1. INTEGER_ARRAY ranked
 --  2. INTEGER_ARRAY player
-returnResult :: Maybe [Int] -> [Int]
-returnResult res
-  | res == Nothing = []
-  | otherwise = Data.Maybe.fromJust res 
-
--- TODO binary search
-customFindIndex :: (a -> Bool) -> [a] -> Maybe Int
-customFindIndex _ [] = Nothing
-customFindIndex f ls = 
-  case Data.List.findIndex f ls of
-    Nothing -> Just $ Data.List.length ls + 1
-    Just x -> Just (x + 1)
-climbingLeaderboard :: [Int] -> [Int] -> Maybe [Int]
-climbingLeaderboard ranked player = do
-  let filterdList = Data.Set.toList $ Data.Set.fromList ranked
-      finalMerged = Data.List.sortBy (\a b -> compare (Data.Ord.Down a) (Data.Ord.Down b) ) filterdList
-  --Just finalMerged
-  sequence $ fmap (\x -> (customFindIndex (<= x)) finalMerged)  player
-  
+climbingLeaderboard :: [Int] -> [Int] -> [Int]
+climbingLeaderboard = flip g . Data.List.reverse . Data.List.zip [1..] . fmap Data.List.head . Data.List.group
+  where
+    g [] _      = []
+    g [x] []    = [1]
+    g (x:xs) [] = 1 : g xs []
+    g xs@(x:xs') ts@((i,p):ts') 
+        | x < p     = (i+1) : g xs' ts 
+        | x == p    = i : g xs' ts
+        | otherwise = g xs ts'
 lstrip = Data.Text.unpack . Data.Text.stripStart . Data.Text.pack
 rstrip = Data.Text.unpack . Data.Text.stripEnd . Data.Text.pack
 
@@ -71,4 +62,4 @@ main = do
     --hPutStrLn fptr $ Data.List.intercalate "\n" $ Data.List.map (\x -> show x) $ returnResult result
 
     --hFlush fptr
-    --hClose fptr
+ 
