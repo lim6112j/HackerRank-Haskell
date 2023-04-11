@@ -73,6 +73,13 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+  sparseArrays:
+    main: Main.hs
+    source-dirs: src/Sparse-Arrays
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
 tests:
   HackerRank-test:
     main: Spec.hs
