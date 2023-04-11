@@ -39,7 +39,22 @@ library
     , text
   default-language: Haskell2010
 
-executable HackerRank-exe
+executable climbleader
+  main-is: Main.hs
+  other-modules:
+      Paths_HackerRank
+  hs-source-dirs:
+      src/Climb-Leader
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , containers
+    , split
+    , text
+  default-language: Haskell2010
+
+executable rotatematrix
   main-is: Main.hs
   other-modules:
       Paths_HackerRank
@@ -55,15 +70,17 @@ executable HackerRank-exe
     , text
   default-language: Haskell2010
 
-executable climbleader
-  main-is: Main.hs
+executable solution
+  main-is: solution.hs
   other-modules:
+      Main
       Paths_HackerRank
   hs-source-dirs:
-      src/Climb-Leader
+      app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array
+      HackerRank
+    , array
     , base >=4.7 && <5
     , containers
     , split
