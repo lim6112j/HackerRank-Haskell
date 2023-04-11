@@ -3,13 +3,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UndecidableInstances #-}
 
-module Main where
-
 import Control.Monad
 import Data.Array
 import Data.Bits
 import Data.List
 import Data.List.Split
+import Data.Maybe
 import Data.Set
 import Data.Text
 import Debug.Trace
@@ -25,10 +24,19 @@ import System.IO.Unsafe
 --  1. STRING_ARRAY stringList
 --  2. STRING_ARRAY queries
 --
+findNum :: (Int, [String]) -> String -> Maybe Int
+findNum stringPair query
+  | Data.List.head (snd stringPair) == query = Just $ fst stringPair
+  | otherwise = Nothing
+
 matchingStrings :: [String] -> [String] -> [Int]
 matchingStrings stringList queries = do
-  let ch = Data.List.foldr (++) "" stringList
-  [1, 2, 3]
+  let groupingList = Data.List.group stringList
+      lenOfList = Data.List.length groupingList
+      listOfLen = Data.List.length <$> groupingList
+      result = Data.List.zip listOfLen groupingList
+      maybeInts = findNum <$> result <*> queries
+  Data.Maybe.fromJust $ sequence maybeInts
 
 -- Write your code here
 
